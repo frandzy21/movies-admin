@@ -23,7 +23,17 @@ class DirectorRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'birth_year' => 'required|integer|min:1900|max:2020',
+            'birth_year' => 'required|integer|min:1900|max:2026',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Введіть ім\'я режисера',
+            'name.max' => 'Ім\'я занадто довге (максимум 255 символів)',
+            'birth_year.required' => 'Введіть рік народження',
+            'birth_year.min' => 'Мінімальний рік 1900',
+            'birth_year.max' => 'Максимальний рік 2026',
         ];
     }
 }

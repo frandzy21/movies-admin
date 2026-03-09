@@ -30,7 +30,7 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ReviewRequest $request)
     {
         $review = new Review();
         $review->author = $request->author;
@@ -61,7 +61,7 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(ReviewRequest $request, $id)
     {
         $review = Review::findorfail($id);
         $review->author = $request->author;

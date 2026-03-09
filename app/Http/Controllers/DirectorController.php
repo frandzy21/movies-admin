@@ -56,7 +56,7 @@ class DirectorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(DirectorRequest $request,$id)
     {
         $director = Director::findorfail($id);
         $director->name = $request->name;

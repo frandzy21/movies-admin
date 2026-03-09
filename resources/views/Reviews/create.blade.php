@@ -10,11 +10,22 @@
     <form action="/reviews" method="POST">
         @csrf
         <label>Автор</label>
-        <input type="text" name="author" class="form-control"> <br>
+        <input type="text" name="author" class="form-control" value="{{old('author')}}"> <br>
+        @error('author')
+        <span class="text-danger">{{$message}}</span>
+        @enderror <br>
+
         <label>Рейтинг</label>
-        <input type="number" name="rating" class="form-control" placeholder="Від 0 до 10"> <br>
+        <input type="number" name="rating" class="form-control" value="{{old('rating')}}" placeholder="Від 1 до 10"> <br>
+        @error('rating')
+        <span class="text-danger">{{$message}}</span>
+        @enderror <br>
+
         <label>Коммент</label>
-        <input type="text" name="comment" class="form-control"> <br>
+        <input type="text" name="comment" class="form-control" value="{{old('comment')}}"> <br>
+        @error('comment')
+        <span class="text-danger">{{$message}}</span>
+        @enderror <br>
 
         <label>Фільм</label>
         <select name="movie_id" class="form-control">

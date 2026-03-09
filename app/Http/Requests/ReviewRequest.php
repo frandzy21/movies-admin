@@ -23,8 +23,20 @@ class ReviewRequest extends FormRequest
     {
         return [
             'author' => 'required|string|max:255',
-            'rating' => 'required|integer|min:1|max:5',
+            'rating' => 'required|integer|min:1|max:10',
             'comment' => 'required|string|max:255',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'author.required' => 'Введіть ім\'я автора',
+            'author.max' => 'Ім\'я занадто велике (максимум 255 символів)',
+            'rating.required' => 'Введіть рейтинг',
+            'rating.min' => 'Мінімальний рейтинг 1',
+            'rating.max' => 'Максимальний рейтинг 10',
+            'comment.required' => 'Напишіть коментар',
+            'comment.max' => 'Коментар занадто ведикий (максимум 255 символів)',
         ];
     }
 }

@@ -26,4 +26,14 @@ class MovieRequest extends FormRequest
             'release_year' => 'required|integer|min:2000|max:2026',
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Введіть назву фільма',
+            'title.max' => 'Назва занадто велика (максимум 255 символів)',
+            'release_year.required' => 'Введіть рік релізу фільма',
+            'release_year.min' => 'Мінімальний рік релізу 2000',
+            'release_year.max' => 'Максимальний рік релізу 2026',
+        ];
+    }
 }
