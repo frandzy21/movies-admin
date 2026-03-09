@@ -30,10 +30,7 @@ class DirectorController extends Controller
      */
     public function store(DirectorRequest $request)
     {
-        $directors = new Director();
-        $directors->name = $request->name;
-        $directors->birth_year = $request->birth_year;
-        $directors->save();
+        Director::create($request->validated());
         return redirect('directors');
     }
 
@@ -59,9 +56,7 @@ class DirectorController extends Controller
     public function update(DirectorRequest $request,$id)
     {
         $director = Director::findorfail($id);
-        $director->name = $request->name;
-        $director->birth_year = $request->birth_year;
-        $director->save();
+        $director->update($request->validated());
         return redirect('directors');
     }
 

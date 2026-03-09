@@ -32,11 +32,7 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request)
     {
-        $movie = new Movie();
-        $movie->title = $request->title;
-        $movie->release_year = $request->release_year;
-        $movie->director_id = $request->director_id;
-        $movie->save();
+        Movie::create($request->validated());
         return redirect('movies');
     }
 
@@ -63,10 +59,7 @@ class MovieController extends Controller
     public function update(MovieRequest $request, $id)
     {
         $movie = Movie::findorfail($id);
-        $movie->title = $request->title;
-        $movie->release_year = $request->release_year;
-        $movie->director_id = $request->director_id;
-        $movie->save();
+        $movie->update($request->validated());
         return redirect('movies');
     }
 

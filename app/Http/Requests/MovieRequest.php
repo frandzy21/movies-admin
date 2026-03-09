@@ -24,6 +24,7 @@ class MovieRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'release_year' => 'required|integer|min:2000|max:2026',
+            'director_id' => 'required',
         ];
     }
     public function messages(): array

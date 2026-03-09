@@ -25,6 +25,7 @@ class ReviewRequest extends FormRequest
             'author' => 'required|string|max:255',
             'rating' => 'required|integer|min:1|max:10',
             'comment' => 'required|string|max:255',
+            'movie_id' => 'required',
         ];
     }
     public function messages(): array

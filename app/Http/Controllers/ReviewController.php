@@ -32,12 +32,7 @@ class ReviewController extends Controller
      */
     public function store(ReviewRequest $request)
     {
-        $review = new Review();
-        $review->author = $request->author;
-        $review->rating = $request->rating;
-        $review->comment = $request->comment;
-        $review->movie_id = $request->movie_id;
-        $review->save();
+        Review::create($request->validated());
         return redirect('reviews');
     }
 
@@ -64,11 +59,7 @@ class ReviewController extends Controller
     public function update(ReviewRequest $request, $id)
     {
         $review = Review::findorfail($id);
-        $review->author = $request->author;
-        $review->rating = $request->rating;
-        $review->comment = $request->comment;
-        $review->movie_id = $request->movie_id;
-        $review->save();
+        $review->update($request->validated());
         return redirect('reviews');
     }
 
