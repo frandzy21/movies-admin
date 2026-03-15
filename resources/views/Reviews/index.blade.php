@@ -12,6 +12,7 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Ім'я</th>
             <th>Рейтинг</th>
             <th>Коммент</th>
         </tr>

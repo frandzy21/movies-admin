@@ -326,6 +326,16 @@ return [
             'url'  => 'reviews',
             'icon' => 'fas fa-fw fa-star',
         ],
+        [
+            'text' => 'Сеанси',
+            'url'  => 'showtimes',
+            'icon' => 'fas fa-fw fa-clock',
+        ],
+        [
+            'text' => 'Квитки',
+            'url'  => 'tickets/create',
+            'icon' => 'fas fa-fw fa-shopping-cart',
+        ],
     ],
 
     /*

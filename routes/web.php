@@ -3,6 +3,8 @@
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ShowtimeController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,5 +33,17 @@ Route::post('/reviews', [ReviewController::class, 'store']);
 Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit']);
 Route::put('/reviews/{review}', [ReviewController::class, 'update']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);
+
+
+Route::get('/showtimes', [ShowtimeController::class, 'index']);
+Route::get('/showtimes/create', [ShowtimeController::class, 'create']);
+Route::post('showtimes', [ShowtimeController::class, 'store']);
+//Route::get('/showtimes/{showtime}/edit', [ShowtimeController::class, 'edit']);
+//Route::put('showtimes/{showtime}', [ShowtimeController::class, 'update']);
+Route::delete('showtimes/{showtime}', [ShowtimeController::class, 'destroy']);
+
+
+Route::get('/tickets/create', [TicketController::class, 'create']);
+Route::post('/tickets', [TicketController::class, 'store']);
 
 

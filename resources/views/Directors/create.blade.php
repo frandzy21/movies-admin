@@ -16,7 +16,7 @@
         @enderror <br>
 
         <label>Рік народження</label>
-        <input type="number" name="birth_year" class="form-control" value="{{old('birth_year')}}" placeholder="Від 1960 до 2026"> <br>
+        <input type="number" name="birth_year" class="form-control" value="{{old('birth_year')}}" placeholder="Від 1900 до 2026"> <br>
         @error('birth_year')
         <span class="text-danger">{{$message}}</span>
         @enderror <br>
