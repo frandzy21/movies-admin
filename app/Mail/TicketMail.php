@@ -54,7 +54,7 @@ class TicketMail extends Mailable
     {
         $pdf = PDF::loadView('pdf.receipt', ['ticket' => $this->ticket]);
         return [
-            Attachment::fromData( fn() => $pdf->output(), 'Ticket.pdf')
+            Attachment::fromData( fn() => $pdf->output(), 'Receipt.pdf')
                 ->withMime('application/pdf'),
             ];
     }
