@@ -13,7 +13,7 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $artists = \App\Models\Artist::all();
+        $artists = Artist::all();
         return view('artist.index', compact('artists'));
     }
 
@@ -30,10 +30,7 @@ class ArtistController extends Controller
      */
     public function store(ArtistRequest $request)
     {
-        $artist = new \App\Models\Artist();
-        $artist->name = $request->name;
-        $artist->genre = $request->genre;
-        $artist->save();
+        Artist::create($request->validated());
         return redirect('/artists');
     }
 
@@ -60,9 +57,7 @@ class ArtistController extends Controller
     public function update(ArtistRequest $request, $id)
     {
         $artist = Artist::findorfail($id);
-        $artist->name = $request->name;
-        $artist->genre = $request->genre;
-        $artist->save();
+        $artist->update($request->validated());
         return redirect('/artists');
     }
 

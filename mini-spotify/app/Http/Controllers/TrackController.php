@@ -31,11 +31,7 @@ class TrackController extends Controller
      */
     public function store(TrackRequest $request)
     {
-        $track = new Track();
-        $track->title = $request->title;
-        $track->duration = $request->duration;
-        $track->album_id = $request->album_id;
-        $track->save();
+        Track::create($request->validated());
         return redirect('/tracks');
     }
 
@@ -63,10 +59,7 @@ class TrackController extends Controller
     public function update(Request $request,$id)
     {
         $track = Track::findorfail($id);
-        $track->title = $request->title;
-        $track->duration = $request->duration;
-        $track->album_id = $request->album_id;
-        $track->save();
+        Track::update($request->validated());
         return redirect('/tracks');
 
     }

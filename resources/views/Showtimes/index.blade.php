@@ -14,6 +14,7 @@
             <th>ID</th>
             <th>Дата сеансу</th>
             <th>Час сеансу</th>
+            <th>Ціна</th>
             <th>Фільм</th>
         </tr>
         </thead>
@@ -23,9 +24,11 @@
                 <td>{{$showtime->id}}</td>
                 <td>{{$showtime->date}}</td>
                 <td>{{$showtime->time}}</td>
+                <td>{{$showtime->price}}</td>
                 <td>{{$showtime->movie->title}}</td>
                 <td> <a href="/tickets/create?showtime_id={{$showtime->id}}" class="btn btn-primary">Купити квиток</a></td>
                 <td>
+                    <a href="/showtimes/{{$showtime->id}}/edit" class="btn btn-warning">Редагувати</a>
                     <form action="/showtimes/{{$showtime->id}}" method="POST" style="display:inline">
                         @csrf
                         @method('DELETE')

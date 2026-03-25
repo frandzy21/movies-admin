@@ -26,7 +26,7 @@
                 <td>
                     <a href="/artists/{{$artist->id}}/edit" class="btn btn-warning btn-sm">Редагувати</a>
 
-                    <form action="/artists/{{$artist->id}}" method="POST" style="display: inline-block">
+                    <form action="/artists/{{$artist->id}}" method="POST" style="display: inline-block" style="display:inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm">Видалити</button>

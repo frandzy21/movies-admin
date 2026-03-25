@@ -15,6 +15,9 @@
         <label>Час сеансу</label>
         <input type="time" name="time" class="form-control"> <br>
 
+        <label>Ціна у грн.</label>
+        <input type="number" name="price" class="form-control"> <br>
+
         <label>Фільм</label>
         <select name="movie_id" class="form-control">
             @foreach($movies as $movie)

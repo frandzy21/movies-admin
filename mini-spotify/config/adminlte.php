@@ -315,6 +315,11 @@ return [
             'url'  => 'tracks',
             'icon' => 'fas fa-fw fa-music',
         ],
+        [
+            'text' => 'Концерти',
+            'url'  => 'concerts',
+            'icon' => 'fas fa-fw fa-microphone',
+        ],
     ],
 
     /*

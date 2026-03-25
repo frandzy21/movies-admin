@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 
-use App\Models\Movie;
-use App\Models\Showtime;
+use App\Mail\MailTicket;
+use App\Models\Concert;
 use App\Models\Ticket;
-use App\Mail\TicketMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -18,8 +17,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::all();
-        return view('tickets.index', compact('tickets'));
+        //
     }
 
     /**
@@ -27,9 +25,9 @@ class TicketController extends Controller
      */
     public function create(Request $request)
     {
-        $id = $request->query('showtime_id');
-        $showtime = Showtime::find($id);
-        return view('tickets.create', compact('showtime'));
+        $id = $request->query('concert_id');
+        $concert = Concert::find($id);
+        return view('ticket.create', compact('concert'));
     }
 
     /**
@@ -37,7 +35,7 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $showtime = Showtime::findOrFail($request->showtime_id);
+        $concert = Concert::findOrFail($request->concert_id);
         session(['pending_ticket' => $request->all()]);
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -48,37 +46,24 @@ class TicketController extends Controller
                 'price_data' => [
                     'currency' => 'uah',
                     'product_data' => [
-                        'name' => 'Ticket for showtime'
+                        'name' => 'Ticket for concert'
                     ],
-                    'unit_amount' => $showtime->price * 100,
+                    'unit_amount' => $concert->price * 100,
                 ],
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
 
             'success_url' => url('/tickets/success'),
-            'cancel_url' => url('/showtimes')
+            'cancel_url' => url('/concerts'),
         ]);
         return redirect($checkout_session->url);
-    }
-
-    public function success()
-    {
-        $ticketData = session('pending_ticket');
-        if (! $ticketData) {
-            return redirect('/showtimes');
-        }
-        $ticket = Ticket::create($ticketData);
-        Mail::to($ticket->buyer_email)->send(new TicketMail($ticket));
-        session()->forget('pending_ticket');
-
-        return redirect('/showtimes')->with('success', 'Your ticket has been sent!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Ticket $ticket)
+    public function show(Ticket $tickets)
     {
         //
     }
@@ -86,7 +71,7 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function edit(Ticket $tickets)
     {
         //
     }
@@ -94,7 +79,7 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(Request $request, Ticket $tickets)
     {
         //
     }
@@ -102,8 +87,24 @@ class TicketController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ticket $ticket)
+    public function destroy(Ticket $tickets)
     {
         //
+    }
+
+
+    public function success(Request $request)
+    {
+        $ticketData = session('pending_ticket');
+        if (! $ticketData) {
+            return redirect('/concerts');
+        }
+        $ticket = Ticket::create($ticketData);
+        $ticket->load('concert.artist');
+
+        Mail::to($ticket->customer_email)->send(new MailTicket($ticket));
+        session()->forget('pending_ticket');
+
+        return redirect('/concerts')->with('success', 'Ticket created');
     }
 }

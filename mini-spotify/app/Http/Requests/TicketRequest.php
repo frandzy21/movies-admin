@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShowtimeRequest extends FormRequest
+class TicketRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,8 @@ class ShowtimeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => 'required|date',
-            'time' => 'required|date_format:H:i',
-            'price' => 'required|numeric',
-            'movie_id' => 'required|integer|exists:movies,id',
+            'customer_email' => 'required|email|unique:tickets,customer_email',
+            'concert_id' => 'required|integer|exists:concerts,id',
         ];
     }
 }

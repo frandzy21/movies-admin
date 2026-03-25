@@ -2,7 +2,7 @@
 
 @section('title', 'Список альбомів')
 
-@section('header_content')
+@section('content_header')
     <h1>Альбоми</h1>
 @stop
 
@@ -29,7 +29,7 @@
                     <form action="/albums/{{$album->id}}" method="POST" style="display: inline-block">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-warning btn-sm">Видалити</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Видалити</button>
                     </form>
                 </td>
             </tr>

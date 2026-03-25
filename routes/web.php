@@ -38,12 +38,14 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);
 Route::get('/showtimes', [ShowtimeController::class, 'index']);
 Route::get('/showtimes/create', [ShowtimeController::class, 'create']);
 Route::post('showtimes', [ShowtimeController::class, 'store']);
-//Route::get('/showtimes/{showtime}/edit', [ShowtimeController::class, 'edit']);
-//Route::put('showtimes/{showtime}', [ShowtimeController::class, 'update']);
+Route::get('/showtimes/{showtime}/edit', [ShowtimeController::class, 'edit']);
+Route::put('showtimes/{showtime}', [ShowtimeController::class, 'update']);
 Route::delete('showtimes/{showtime}', [ShowtimeController::class, 'destroy']);
 
 
 Route::get('/tickets/create', [TicketController::class, 'create']);
 Route::post('/tickets', [TicketController::class, 'store']);
+
+Route::get('/tickets/success', [TicketController::class, 'success']);
 
 

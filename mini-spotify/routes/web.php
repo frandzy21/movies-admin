@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\ConcertController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TrackController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +33,18 @@ Route::post('/tracks', [TrackController::class, 'store']);
 Route::get('/tracks/{id}/edit', [TrackController::class, 'edit']);
 Route::put('/tracks/{id}', [TrackController::class, 'update']);
 Route::delete('/tracks/{id}', [TrackController::class, 'destroy']);
+
+
+Route::get('/concerts', [ConcertController::class, 'index']);
+Route::get('/concerts/create', [ConcertController::class, 'create']);
+Route::post('/concerts', [ConcertController::class, 'store']);
+Route::get('/concerts/{id}/edit', [ConcertController::class, 'edit']);
+Route::put('/concerts/{id}', [ConcertController::class, 'update']);
+Route::delete('/concerts/{id}', [ConcertController::class, 'destroy']);
+
+Route::get('/tickets/create', [TicketController::class, 'create']);
+Route::post('/tickets', [TicketController::class, 'store']);
+
+
+
+Route::get('tickets/success', [TicketController::class, 'success']);

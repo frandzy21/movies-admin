@@ -29,13 +29,9 @@ class AlbumController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AlbumRequest $request)
     {
-        $album = new Album();
-        $album->title = $request->title;
-        $album->release_year = $request->release_year;
-        $album->artist_id = $request->artist_id;
-        $album->save();
+        Album::create($request->validated());
         return redirect('/albums');
     }
 
@@ -60,13 +56,10 @@ class AlbumController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(AlbumRequest $request, $id)
     {
         $album = Album::findorfail($id);
-        $album->title = $request->title;
-        $album->release_year = $request->release_year;
-        $album->artist_id = $request->artist_id;
-        $album->save();
+        Album::update($request->validated());
         return redirect('/albums');
     }
 

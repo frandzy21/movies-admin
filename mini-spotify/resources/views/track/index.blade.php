@@ -15,7 +15,7 @@
     <tr>
     <th>ID</th>
     <th>Назва трека</th>
-    <th>Тривалість треку</th>
+    <th>Тривалість треку (в секундах)</th>
     </tr>
     </thead>
 
@@ -30,7 +30,7 @@
                     <form action="/tracks/{{$track->id}}" method="POST" style="display: inline-block">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-warning btn-sm">Видалити</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Видалити</button>
                     </form>
                 </td>
             </tr>

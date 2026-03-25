@@ -27,4 +27,17 @@ class TrackRequest extends FormRequest
             'album_id' => 'required|exists:albums,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'The title field is required.',
+            'title.max' => 'The title may not be greater than 255 characters.',
+            'duration.required' => 'The duration field is required.',
+            'duration.min' => 'The duration may not be greater than 1.',
+            'duration.max' => 'The duration may not be greater than 2000.',
+            'album_id.required' => 'The album field is required.',
+            'album_id.exists' => 'The album field does not exist.',
+        ];
+    }
 }

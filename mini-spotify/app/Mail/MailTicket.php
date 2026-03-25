@@ -8,18 +8,16 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Mail\Mailables\Attachment;
 
-class TicketMail extends Mailable
+class MailTicket extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $ticket;
 
     /**
      * Create a new message instance.
      */
-    public $ticket;
-
     public function __construct($ticket)
     {
         $this->ticket = $ticket;
@@ -31,7 +29,7 @@ class TicketMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Квиток на фільм',
+            subject: 'Ticket for concert',
         );
     }
 
@@ -52,10 +50,6 @@ class TicketMail extends Mailable
      */
     public function attachments(): array
     {
-        $pdf = PDF::loadView('pdf.receipt', ['ticket' => $this->ticket]);
-        return [
-            Attachment::fromData( fn() => $pdf->output(), 'Ticket.pdf')
-                ->withMime('application/pdf'),
-            ];
+        return [];
     }
 }

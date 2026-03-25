@@ -26,4 +26,14 @@ class ArtistRequest extends FormRequest
             'genre' => 'required|string|max:255',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'The name field is required.',
+            'name.max' => 'The name may not be greater than 255 characters.',
+            'genre.required' => 'The genre field is required.',
+            'genre.max' => 'The genre may not be greater than 255 characters.',
+        ];
+    }
 }

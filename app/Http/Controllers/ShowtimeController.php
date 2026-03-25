@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Movie;
 use App\Models\Showtime;
 use Illuminate\Http\Request;
@@ -47,17 +48,21 @@ class ShowtimeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Showtime $showtime)
+    public function edit($id)
     {
-        //
+        $showtime = Showtime::findOrFail($id);
+        $movies = Movie::all();
+        return view('showtimes.edit', compact('movies', 'showtime'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Showtime $showtime)
+    public function update(ShowTimeRequest $request, $id)
     {
-        //
+        $showtime = Showtime::findOrFail($id);
+        $showtime->update($request->validated());
+        return redirect('/showtimes');
     }
 
     /**
